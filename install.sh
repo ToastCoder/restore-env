@@ -4,13 +4,47 @@
 
 # ---------------------------------------------------------------------------------------------------------
 
-# SUB FUNCTION TO DOWNLOAD AND INSTALL GOOGLE CHROME
-chrome_deb()
+# SUB FUNCTION TO UNINSTALL UNWANTED SOFTWARES (DEBIAN)
+remove_deb()
 {
-    wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
-    sudo dpkg -i google-chrome-stable_current_amd64.deb
+    echo "Checking if Firefox is already installed..."
+    if which firefox >/dev/null;
+    then
+        echo "Firefox is installed..."
+        echo "Removing Firefox..."
+        sudo apt remove firefox
+    else
+        echo "Firefox is not installed."
+        echo "Skipping to next application..."
+    fi
+
+    echo "Checking if Thunderbird is already installed..."
+    if which thunderbird >/dev/null;
+    then
+        echo "Thunderbird is installed..."
+        echo "Removing thunderbird..."
+        sudo apt remove thunderbird
+    else
+        echo "Thunderbird is not installed..."
+        echo "Skipping to next application..."
+    fi
 }
 
+# SUB FUNCTION TO DOWNLOAD AND INSTALL GOOGLE CHROME (DEBIAN)
+chrome_deb()
+{
+    echo "Checking if Google Chrome is already installed..."
+    if which google-chrome >/dev/null;
+    then
+        echo "Chrome is already installed..."
+        echo "Skipping reinstallation of Google Chrome..."
+    else
+        echo "Installing Google Chrome..."
+        wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+        sudo dpkg -i google-chrome-stable_current_amd64.deb
+        echo "Sucessfully installed Google Chrome..."
+    fi
+}
 
 # FUNCTION TO INSTALL APPS ON DEBIAN BASED DISTROS
 install_deb()
@@ -18,20 +52,9 @@ install_deb()
     echo "Checking for System Updates..."
     sudo apt update
     sudo apt upgrade -y
-    echo "Installing Google Chrome..."
+    echo "Removing softwares which is not used before resetting..."
+    remove_deb
     chrome_deb
-    echo "Sucessfully installed Google Chrome..."
-    
-    if which firefox >/dev/null;
-    then
-        echo "Removing firefox..."
-        sudo apt remove firefox
-    fi
-    if which thunderbird >/dev/null;
-    then
-        echo "Removing thunderbird..."
-        sudo apt remove thunderbird
-    fi
 }
 
 # MAIN FUNCTION
@@ -43,21 +66,23 @@ echo
 echo "Press Y to proceed... To abort Press N"
 read res
 
-# AWAITING USER RESPONSE
-if (($res == "y" || $res == "Y"))
+# GETTING USER RESPONSE TO PROCEED
+if [[$res -eq 'y']] || [[$res -eq 'Y']];
 then
 
     echo "Press 1 for Debian based linux"
     echo "Press 2 for Red Hat based linux"
     read osres
-    if (($osres == 1))
+    if [[$osres -eq 1]];
     then
         install_deb
-    else
+    elif [[$osres -eq 2]];
+    then
         install_rhel
     fi
 
-else
+elif [[$res -eq "n" ]] || [[$res -eq "N"]];
+then
     echo "Thank you..."
 fi
 
