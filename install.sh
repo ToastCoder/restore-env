@@ -11,6 +11,7 @@ chrome_deb()
     sudo dpkg -i google-chrome-stable_current_amd64.deb
 }
 
+
 # FUNCTION TO INSTALL APPS ON DEBIAN BASED DISTROS
 install_deb()
 {
@@ -20,6 +21,17 @@ install_deb()
     echo "Installing Google Chrome..."
     chrome_deb
     echo "Sucessfully installed Google Chrome..."
+    
+    if which firefox >/dev/null;
+    then
+        echo "Removing firefox..."
+        sudo apt remove firefox
+    fi
+    if which thunderbird >/dev/null;
+    then
+        echo "Removing thunderbird..."
+        sudo apt remove thunderbird
+    fi
 }
 
 # MAIN FUNCTION
@@ -32,17 +44,21 @@ echo "Press Y to proceed... To abort Press N"
 read res
 
 # AWAITING USER RESPONSE
-if [[$res == y || $res == Y]]
+if (($res == "y" || $res == "Y"))
 then
+
     echo "Press 1 for Debian based linux"
     echo "Press 2 for Red Hat based linux"
     read osres
-    if [[$osres == 1]]
+    if (($osres == 1))
     then
-        install_deb
+        install_deb()
     else
         install_rhel
     fi
+
+else
+    echo "Thank you..."
 fi
 
 
