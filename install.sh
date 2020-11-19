@@ -42,8 +42,27 @@ chrome_deb()
         echo "Installing Google Chrome..."
         wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
         sudo dpkg -i google-chrome-stable_current_amd64.deb
-        echo "Sucessfully installed Google Chrome..."
+        echo "Sucessfully installed Google Chrome."
     fi
+}
+
+# SUB FUNCTION TO INSTALL AND CONFIGURE GIT (DEBIAN)
+git_deb()
+{
+    echo "Checking if Git is already installed..."
+    if which git >/dev/null;
+    then
+        echo "Git is already installed..."
+        echo "Skipping reinstallation of Git..."
+    else
+        echo "Installing Git..."
+        sudo apt install git
+        echo "Sucessfully installed Git."
+    
+    echo "Configuring Git..."
+    git config --global user.name "ToastCoder"
+    git config --global user.email "vicky.pcbasic@gmail.com"
+    echo "Successfully configured git."
 }
 
 # FUNCTION TO INSTALL APPS ON DEBIAN BASED DISTROS
@@ -55,6 +74,7 @@ install_deb()
     echo "Removing softwares which is not used before resetting..."
     remove_deb
     chrome_deb
+    git_deb
 }
 
 # MAIN FUNCTION
