@@ -65,23 +65,21 @@ echo "|_________________________________________________________________________
 echo
 echo "Press Y to proceed... To abort Press N"
 read res
-
-# GETTING USER RESPONSE TO PROCEED
-if [[$res -eq 'y']] || [[$res -eq 'Y']];
+if [[ $res -eq 'y' ]] || [[ $res -eq 'Y' ]]
 then
 
     echo "Press 1 for Debian based linux"
     echo "Press 2 for Red Hat based linux"
     read osres
-    if [[$osres -eq 1]];
+    if [[ $osres -eq 1 ]]
     then
         install_deb
-    elif [[$osres -eq 2]];
+    elif [[ $osres -eq 2 ]]
     then
         install_rhel
     fi
 
-elif [[$res -eq "n" ]] || [[$res -eq "N"]];
+elif [[ $res -eq "n" ]] || [[ $res -eq "N" ]]
 then
     echo "Thank you..."
 fi
