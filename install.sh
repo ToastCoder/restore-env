@@ -52,7 +52,7 @@ then
     read osres
     if (($osres == 1))
     then
-        install_deb()
+        install_deb
     else
         install_rhel
     fi
