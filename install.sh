@@ -63,6 +63,7 @@ git_deb()
     git config --global user.name "ToastCoder"
     git config --global user.email "vicky.pcbasic@gmail.com"
     echo "Successfully configured git."
+    fi
 }
 
 # FUNCTION TO INSTALL APPS ON DEBIAN BASED DISTROS
