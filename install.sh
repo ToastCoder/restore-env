@@ -86,6 +86,32 @@ vscode_deb()
     fi
 }
 
+# SUB FUNCTION TO INSTALL ANACONDA
+conda_deb()
+{
+    echo "Checking if Anaconda is already installed..."
+    if which conda >/dev/null;
+    then
+        echo "Anaconda is already installed."
+        echo "Skipping Anaconda installation..."
+    else
+        echo "Installing Pre-requisites for anaconda..."
+        apt-get install libgl1-mesa-glx libegl1-mesa libxrandr2 libxrandr2 libxss1 libxcursor1 libxcomposite1 libasound2 libxi6 libxtst6
+        echo "Downloading and installing anaconda..."
+        mkdir temp
+        cd temp
+        wget https://repo.anaconda.com/archive/Anaconda3-2020.11-Linux-x86_64.sh
+        bash Anaconda3-2020.11-Linux-x86_64.sh
+        cd ..
+        conda init
+        conda activate base
+        conda config --set auto_activate_base False
+        conda deactivate base
+        echo "Successfully installed and configured Anaconda"
+    fi
+
+}
+
 # FUNCTION TO INSTALL APPS ON DEBIAN BASED DISTROS
 install_deb()
 {
@@ -96,6 +122,7 @@ install_deb()
     remove_deb
     chrome_deb
     git_deb
+    conda_deb
 }
 
 # MAIN FUNCTION
