@@ -100,8 +100,13 @@ conda_deb()
         echo "Downloading and installing anaconda..."
         mkdir temp
         cd temp
-        wget https://repo.anaconda.com/archive/Anaconda3-2020.11-Linux-x86_64.sh
-        bash Anaconda3-2020.11-Linux-x86_64.sh
+        version=$(wget https://repo.anaconda.com/archive/ -q -O- |\
+        grep 'Anaconda3'|\
+        sed -n 's|.*>Anaconda3-\([0-9]\{4\}\.[0-9]\{2\}\)-.*|\1|p' |\
+        uniq |\
+        sort -r |\
+        head -1)
+        wget "https://repo.anaconda.com/archive/Anaconda3-$version-Linux-x86_64.sh"
         cd ..
         conda init
         conda activate base
