@@ -112,9 +112,37 @@ conda_deb()
         conda activate base
         conda config --set auto_activate_base False
         conda deactivate base
-        echo "Successfully installed and configured Anaconda"
+        echo "Successfully installed and configured Anaconda."
     fi
+}
 
+# SUB-FUNCTION TO INSTALL JDK
+jdk_deb()
+{
+    echo "Checking if JDK is already installed...."
+    if which javac >/dev/null;
+    then
+        echo "JDK is already installed."
+        echo "Skipping JDK installation..."
+    else
+        echo "Installing JDK..."
+        sudo apt install default-jdk
+        echo "Sucessfully installed JDK"
+    fi
+}
+
+# SUB-FUNCTION TO INSTALL JRE
+jre_deb()
+{
+    echo "Checking if JRE is already installed..."
+    if which java >/dev/null;
+    then
+        echo "JRE is already installed."
+        echo "Skipping JRE installation..."
+    else
+        echo "Installing JRE..."
+        sudo apt install default-jre
+        echo "Successfully installed JRE"
 }
 
 # FUNCTION TO INSTALL APPS ON DEBIAN BASED DISTROS
@@ -128,6 +156,8 @@ install_deb()
     chrome_deb
     git_deb
     conda_deb
+    jdk_deb
+    jre_deb
 }
 
 # MAIN FUNCTION
