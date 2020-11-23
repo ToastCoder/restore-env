@@ -143,6 +143,7 @@ jre_deb()
         echo "Installing JRE..."
         sudo apt install default-jre
         echo "Successfully installed JRE"
+    fi
 }
 
 # FUNCTION TO INSTALL APPS ON DEBIAN BASED DISTROS
