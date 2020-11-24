@@ -187,5 +187,3 @@ elif [[ $res -eq "n" ]] || [[ $res -eq "N" ]]
 then
     echo "Thank you..."
 fi
-
-
