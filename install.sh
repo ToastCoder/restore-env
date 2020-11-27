@@ -146,6 +146,23 @@ jre_deb()
     fi
 }
 
+node_deb()
+{
+    echo "Checking if Node.js and npm are already installed"
+    if which node >/dev/null;
+    then
+        if which npm >/dev/null;
+        then
+            echo "npm and Node.js are already installed."
+            echo "Skipping their installation..."
+        else
+            echo "Installing npm..."
+            sudo apt install npm
+            echo "Successfully installed npm."
+        fi
+    fi
+}
+
 # FUNCTION TO INSTALL APPS ON DEBIAN BASED DISTROS
 install_deb()
 {
@@ -159,6 +176,7 @@ install_deb()
     conda_deb
     jdk_deb
     jre_deb
+    node_deb
 }
 
 # MAIN FUNCTION
