@@ -213,5 +213,6 @@ jdk_deb
 jre_deb
 node_deb
 obs_deb
+edge_deb
 
 
