@@ -170,6 +170,21 @@ node_deb()
     fi
 }
 
+# FUNCTION TO INSTALL OBS
+obs_deb()
+{
+    echo "Checking if OBS Studio is already installed..."
+    if which obs >/dev/null;
+    then
+        echo "OBS Studio is already installed."
+        echo "Skipping OBS Studio installation..."
+    else
+        echo "Installing OBS Studio..."
+        sudo apt install obs
+        echo "Successfully installed OBS-Studio"
+    fi
+}
+
 # MAIN FUNCTION
 echo "Checking for System Updates..."
 sudo apt update
@@ -182,4 +197,6 @@ conda_deb
 jdk_deb
 jre_deb
 node_deb
+obs_deb
+
 
