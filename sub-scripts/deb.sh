@@ -48,6 +48,7 @@ chrome_deb()
         echo "Installing Google Chrome..."
         wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
         sudo dpkg -i google-chrome-stable_current_amd64.deb
+        sudo rm google-chrome-stable-current_amd64.deb
         echo "Sucessfully installed Google Chrome."
     fi
 }
@@ -185,6 +186,20 @@ obs_deb()
     fi
 }
 
+# FUNCTION TO INSTALL MS-EDGE
+edge_deb()
+{
+    echo "Checking if Microsoft Edge is already installed..."
+    if which microsoft-edge >/dev/null;
+    then
+        echo "Microsoft Edge is already installed."
+        echo "Skipping Microsoft Edge installation..."
+    else
+        echo "Installing Microsoft Edge..."
+        sudo apt install microsoft-edge-dev
+        echo "Successfully installed Microsoft Edge"
+    fi
+}
 # MAIN FUNCTION
 echo "Checking for System Updates..."
 sudo apt update
