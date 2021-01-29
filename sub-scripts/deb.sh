@@ -22,6 +22,18 @@ remove_deb()
         echo "Thunderbird is not installed..."
         echo "Skipping to next application..."
     fi
+
+    echo "Checking if Geary is already installed..."
+    if which geary >/dev/null;
+    then
+        echo "Geary is installed..."
+        echo "Removing geary..."
+        sudo apt remove geary
+    else
+        echo "Geary is not installed..."
+        echo "Skipping to next application..."
+    fi
+
 }
 
 # FUNCTION TO DOWNLOAD AND INSTALL GOOGLE CHROME (DEBIAN)
