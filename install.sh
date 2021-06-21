@@ -1,5 +1,8 @@
 #!/bin/sh
+
 # Done by: Vigneshwar Ravichandar
+
+# RESTORE ENVIRONMENT SCRIPT
 # This is a script which automatically reinstalls all previously used apps when resetting for convenience.
 
 # ---------------------------------------------------------------------------------------------------------
