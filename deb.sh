@@ -51,6 +51,23 @@ spotify_deb()
         echo "Successfully installed Spotify."
 }
 
+# FUNCTION TO DOWNLOAD AND INSTALL STEAM (DEBIAN)
+steam_deb()
+{
+    echo "Checking if Steam is already installed..."
+    if which steam >/dev/null;
+    then
+        echo "Steam is already installed..."
+        echo "Skipping reinstallation of Steam.."
+    else
+        echo "Installing Steam..."
+        wget https://cdn.akamai.steamstatic.com/client/installer/steam.deb
+        sudo dpkg -i steam.deb
+        sudo rm steam.deb
+        echo "Sucessfully installed Steam."
+    fi
+}
+
 # FUNCTION TO DOWNLOAD AND INSTALL GOOGLE CHROME (DEBIAN)
 chrome_deb()
 {
