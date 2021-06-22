@@ -17,6 +17,24 @@ remove_deb()
     done
 }
 
+# FUNCTION TO INSTALL PACKAGES FROM APT PACKAGE MANAGER
+install_apt()
+{
+    declare -a ins=("Git" "Discord" "Telegram-Desktop" "Node" "OBS" "Npm" "Microsoft-Edge-Dev")
+    for i in "${ins[@]}"
+    do
+        echo "Checking if $i is already installed..."
+        if which "${i,,}" > dev/null;
+        then
+            echo "$i is installed."
+            echo "Skipping to next application..."
+        else
+            echo "Installing $i..."
+            sudo apt install "${i,,}" -y
+            echo "Successfully installed $i"
+
+
+}
 # FUNCTION TO DOWNLOAD AND INSTALL GOOGLE CHROME (DEBIAN)
 chrome_deb()
 {
@@ -134,53 +152,6 @@ jre_deb()
     fi
 }
 
-# FUNCTION TO INSTALL NODE.JS
-node_deb()
-{
-    echo "Checking if Node.js and npm are already installed"
-    if which node >/dev/null;
-    then
-        if which npm >/dev/null;
-        then
-            echo "npm and Node.js are already installed."
-            echo "Skipping their installation..."
-        else
-            echo "Installing npm..."
-            sudo apt install npm
-            echo "Successfully installed npm."
-        fi
-    fi
-}
-
-# FUNCTION TO INSTALL OBS
-obs_deb()
-{
-    echo "Checking if OBS Studio is already installed..."
-    if which obs >/dev/null;
-    then
-        echo "OBS Studio is already installed."
-        echo "Skipping OBS Studio installation..."
-    else
-        echo "Installing OBS Studio..."
-        sudo apt install obs
-        echo "Successfully installed OBS-Studio"
-    fi
-}
-
-# FUNCTION TO INSTALL MS-EDGE
-edge_deb()
-{
-    echo "Checking if Microsoft Edge is already installed..."
-    if which microsoft-edge >/dev/null;
-    then
-        echo "Microsoft Edge is already installed."
-        echo "Skipping Microsoft Edge installation..."
-    else
-        echo "Installing Microsoft Edge..."
-        sudo apt install microsoft-edge-dev
-        echo "Successfully installed Microsoft Edge"
-    fi
-}
 # MAIN FUNCTION
 echo "Checking for System Updates..."
 sudo apt update
