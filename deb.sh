@@ -24,17 +24,33 @@ install_apt()
     for i in "${ins[@]}"
     do
         echo "Checking if $i is already installed..."
-        if which "${i,,}" > dev/null;
+        if which "${i,,}" >/dev/null;
         then
             echo "$i is installed."
-            echo "Skipping to next application..."
+            echo "Skipping installation of $i..."
         else
             echo "Installing $i..."
             sudo apt install "${i,,}" -y
             echo "Successfully installed $i"
 
-
 }
+
+# FUNCTION TO DOWNLOAD AND INSTALL SPOTIFY (DEBIAN)
+spotify_deb()
+{
+    echo "Checking if Spotify is already installed..."
+    if which spotify >/dev/null;
+    then
+        echo "Spotify is already installed."
+        echo "Skipping installation of Spotify..."
+    else
+        echo "Installing Spotify..."
+        curl -sS https://download.spotify.com/debian/pubkey_0D811D58.gpg | sudo apt-key add - 
+        echo "deb http://repository.spotify.com stable non-free" | sudo tee /etc/apt/sources.list.d/spotify.list
+        sudo apt-get update && sudo apt-get install spotify-client
+        echo "Successfully installed Spotify."
+}
+
 # FUNCTION TO DOWNLOAD AND INSTALL GOOGLE CHROME (DEBIAN)
 chrome_deb()
 {
@@ -68,6 +84,7 @@ git_deb()
     echo "Configuring Git..."
     git config --global user.name "ToastCoder"
     git config --global user.email "vicky.pcbasic@gmail.com"
+    git config advice.addIgnoredFile false
     echo "Successfully configured git."
     fi
 }
@@ -158,13 +175,13 @@ sudo apt update
 sudo apt upgrade -y
 echo "Removing softwares which is not used before resetting..."
 remove_deb
+echo "Installing Required Softwares..."
+install_apt
 chrome_deb
 git_deb
 conda_deb
 jdk_deb
 jre_deb
-node_deb
-obs_deb
-edge_deb
+
 
 
