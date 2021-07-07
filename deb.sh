@@ -224,6 +224,6 @@ git_deb
 conda_deb
 jdk_deb
 jre_deb
-
+vim_setup
 
 
