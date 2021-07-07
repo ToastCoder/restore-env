@@ -186,6 +186,31 @@ jre_deb()
     fi
 }
 
+# FUNCTION TO INSTALL AND CONFIGURE VIM
+vim_setup()
+{
+	echo "Checking if Vim is already installed..."
+	if which vim >/dev/null;
+	then
+        echo "Vim is already installed."
+        echo "Skipping Vim installation..."
+    else
+        echo "Installing Vim..."
+        sudo apt install vim
+        echo "Successfully installed Vim"
+    fi
+    mkdir .vim
+    touch .vimrc
+    mkdir .vim/colors
+    echo "syntax on" >> .vimrc
+    echo "set autoindent" >> .vimrc
+    echo "set number" >> .vimrc
+    echo "set mouse=a" >> .vimrc
+    echo "set tabstop=4" >> .vimrc
+    echo "set shiftwidth=4" >> .vimrc
+    echo "set expandtab" >> .vimrc
+}
+	
 # MAIN FUNCTION
 echo "Checking for System Updates..."
 sudo apt update
