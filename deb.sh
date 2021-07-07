@@ -20,7 +20,7 @@ remove_deb()
 # FUNCTION TO INSTALL PACKAGES FROM APT PACKAGE MANAGER
 install_apt()
 {
-    declare -a ins=("Git" "Discord" "Telegram-Desktop" "Node" "OBS" "Npm" "Microsoft-Edge-Dev")
+    declare -a ins=("Git" "Discord" "Telegram-Desktop" "Node" "OBS" "Npm" "Microsoft-Edge-Dev" "Protonvpn")
     for i in "${ins[@]}"
     do
         echo "Checking if $i is already installed..."
