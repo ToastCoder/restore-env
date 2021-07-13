@@ -202,13 +202,34 @@ vim_setup()
     mkdir .vim
     touch .vimrc
     mkdir .vim/colors
-    echo "syntax on" >> .vimrc
-    echo "set autoindent" >> .vimrc
-    echo "set number" >> .vimrc
-    echo "set mouse=a" >> .vimrc
-    echo "set tabstop=4" >> .vimrc
-    echo "set shiftwidth=4" >> .vimrc
-    echo "set expandtab" >> .vimrc
+    echo "call plug#begin(expand('~/.vim/plugged'))
+Plug 'arcticicestudio/nord-vim'
+Plug 'kyoto-shift/film-noir'
+Plug 'vimsence/vimsence'
+Plug 'preservim/nerdtree'
+Plug 'itchyny/lightline.vim'
+Plug 'HenryNewcomer/vim-theme-papaya'
+call plug#end()
+
+let g:film_noir_color='blue'
+
+if (has("termguicolors"))
+  set termguicolors
+endif
+
+let g:lightline = {
+      \ 'colorscheme': 'powerline',
+      \ }
+set noshowmode
+set laststatus=2
+colorscheme papaya_original
+set autoindent
+set smartindent
+set mouse=a
+set tabstop=4
+set shiftwidth=4
+set number
+set expandtab" >> .vimrc
 }
 	
 # MAIN FUNCTION
