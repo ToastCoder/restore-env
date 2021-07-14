@@ -206,6 +206,7 @@ vim_setup()
 Plug 'arcticicestudio/nord-vim'
 Plug 'kyoto-shift/film-noir'
 Plug 'vimsence/vimsence'
+Plug 'jiangmiao/auto-pairs'
 Plug 'preservim/nerdtree'
 Plug 'itchyny/lightline.vim'
 Plug 'HenryNewcomer/vim-theme-papaya'
